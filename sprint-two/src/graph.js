@@ -20,15 +20,12 @@ Graph.prototype.addNode = function(node) {
 Graph.prototype.contains = function(node) {
 
   var foundIt = false;
-  if (this[this.counter - 1].value === node) {
-    foundIt = true;
-  }
 
-  // for (var i = 0; i < this.children.length; i++) {
-  //   if(this.children[i].contains(node)) {
-  //     foundIt = true;
-  //   }
-  // }
+  for (var key in this) {
+    if(this[key].value === node) {
+      foundIt = true;
+    }
+  }
 
   return foundIt;
 
@@ -36,7 +33,11 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-
+  for (var key in this) {
+    if (this[key].value === node) {
+      delete this[key];
+    }
+  }
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -47,6 +48,11 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 Graph.prototype.addEdge = function(fromNode, toNode) {
   // {1: {value: node, edge: [2,3]}
   // 2: {value: node, edge: [1,4]}
+  // 48: {value: {somethinghere}, edge }  // delete this line
+  // How do we access key 48??
+  // this[48] = {value: {someNode}, edge: []}
+  // If we have the value of an object, how do we get the key?
+  // Object.keys(this[i]).value === node;
 };
 
 // Remove an edge between any two specified (by value) nodes.
