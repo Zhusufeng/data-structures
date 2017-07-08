@@ -32,10 +32,29 @@ BinarySearchTree.prototype.insert = function (value, familyMember) {
   }
 };
 
-BinarySearchTree.prototype.contains = function () {
+BinarySearchTree.prototype.contains = function (target) {
 
+  //debugger;
 
+  var isFound = false;
 
+  function subContains (familyMember) {
+    if (familyMember !== null && familyMember.value === target) {
+      // console.log(this.value, this.value === target);
+      isFound = true;
+    }
+
+    if (familyMember !== null && target < familyMember.value) {
+      subContains(familyMember.left);
+    } else if (familyMember !== null && target > familyMember.value) {
+      subContains(familyMember.right);
+    }
+
+  }
+
+  // console.log(isFound);
+  subContains(this);
+  return isFound;
 };
 
 BinarySearchTree.prototype.depthFirstLog = function () {
