@@ -6,7 +6,7 @@ var BinarySearchTree = function(value) {
   return storage;
 };
 
-BinarySearchTree.prototype.insert = function (value, familyMember) {
+BinarySearchTree.prototype.insert = function (value) {
   if (value < this.value) {
 
     if (this.left) {
@@ -57,8 +57,16 @@ BinarySearchTree.prototype.contains = function (target) {
   return isFound;
 };
 
-BinarySearchTree.prototype.depthFirstLog = function () {
+BinarySearchTree.prototype.depthFirstLog = function (callBack) {
+  callBack(this.value);
 
+  if (this.left) {
+    this.left.depthFirstLog(callBack);
+  }
+
+  if (this.right) {
+    this.right.depthFirstLog(callBack);
+  }
 };
 /*
  * Complexity: What is the time complexity of the above functions?
